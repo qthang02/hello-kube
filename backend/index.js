@@ -1,30 +1,22 @@
-const express = require('express');
+require('dotenv').config()
 
-const app = express();
+const express = require('express')
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
+// express app
+const app = express()
 
-app.get('/khong-che', (req, res) => {
-  res.send('day la trang khong che');
-});
-
-app.get('/co-che', ( req, res ) => {
-  res.send(' day la trang co che ');
-});
-
-app.get('/javvietsub/:id', ( req, res ) => {
-  const id = req.params.id;
-  res.send(`day la trang jav vietsub ${id}`);
-});
-
-
-app.get('/javKorea/:title', ( req, res ) => {
-  const title = req.params.title;
-  res.send('day la trang jav korea ' + title);
+// middleware
+app.use((req, res, next) => {
+  console.log(req.path, req.method)
+  next()
 })
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
-});
+// routes
+app.get('/', (req, res) => {
+  res.json({mssg: 'Welcome to the app'})
+})
+
+// listen for requests
+app.listen(process.env.PORT, () => {
+  console.log('listening on port', process.env.PORT)
+})
