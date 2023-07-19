@@ -3,7 +3,6 @@ services:
   mongo:
     image: mongo
     container_name: mongo
-    restart: always
     ports:
       - 27017:27017
     volumes:
@@ -12,18 +11,16 @@ services:
   backend:
     build: ./backend
     container_name: backend
-    restart: always
     ports:
       - 4000:4000
     environment:
-      - MONGO_URI=mongodb://mongo:27017
+      - MONGO_URI=mongodb://mongo:27017/Workout
     depends_on:
       - mongo
 
   frontend:
     build: ./frontend
     container_name: frontend
-    restart: always
     ports:
       - 3000:3000
     depends_on:

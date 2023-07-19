@@ -1,11 +1,14 @@
 require('dotenv').config()
-
+const cors = require('cors')
 const express = require('express')
 const mongoose = require('mongoose')
 const workoutRoutes = require('./routes/workouts')
 
 // express app
 const app = express()
+
+// cors
+app.use(cors())
 
 // middleware
 app.use(express.json())
@@ -18,8 +21,11 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/workouts', workoutRoutes)
 
+const MONGO_URI = `mongodb://mongo:27017/Workout`
+
+
 // connect to db
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(MONGO_URI)
   .then(() => {
     console.log('connected to database')
     // listen to port

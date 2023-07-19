@@ -12,7 +12,7 @@ const WorkoutForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const URL = `${process.env.REACT_APP_API_URL}/api/workouts/`
+    const URL = `http://localhost:4000/api/workouts/`
 
     const workout = {title, load, reps}
     
