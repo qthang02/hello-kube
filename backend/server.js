@@ -21,11 +21,8 @@ app.use((req, res, next) => {
 // routes
 app.use('/api/workouts', workoutRoutes)
 
-const MONGO_URI = `mongodb://mongo:27017/Workout`
-
-
 // connect to db
-mongoose.connect(MONGO_URI)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('connected to database')
     // listen to port

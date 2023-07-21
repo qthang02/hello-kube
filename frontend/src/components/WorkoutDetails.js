@@ -4,7 +4,7 @@ import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const WorkoutDetails = ({ workout }) => {
-  const URL = `http://localhost:4000/api/workouts/`
+  const URL = `${process.env.REACT_APP_API_URL}/api/workouts/`
   const { dispatch } = useWorkoutsContext()
 
   const handleClick = async () => {
